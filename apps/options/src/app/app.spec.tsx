@@ -10,6 +10,6 @@ describe('App', () => {
 
   it('should have a greeting as the title', () => {
     const { getByText } = render(<App />);
-    expect(getByText(/Welcome chrome-extension-starter/gi)).toBeTruthy();
+    expect(getByText(/Welcome chrome-extension-react-starter/gi)).toBeTruthy();
   });
 });

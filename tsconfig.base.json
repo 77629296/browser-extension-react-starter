@@ -10,7 +10,17 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "ES2022",
+      "Dom",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "chrome",
+      "node",
+      "jest",
+      "jest-extended"
+  ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
