@@ -1,0 +1,79 @@
+{
+  "name": "chrome-extension-starter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/chrome-extension-starter/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/chrome-extension-starter",
+        "index": "apps/chrome-extension-starter/src/index.html",
+        "baseHref": "/",
+        "main": "apps/chrome-extension-starter/src/main.tsx",
+        "tsConfig": "apps/chrome-extension-starter/tsconfig.app.json",
+        "assets": [
+          "apps/chrome-extension-starter/src/favicon.ico",
+          "apps/chrome-extension-starter/src/assets"
+        ],
+        "styles": ["apps/chrome-extension-starter/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/chrome-extension-starter/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/chrome-extension-starter/src/environments/environment.ts",
+              "with": "apps/chrome-extension-starter/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "chrome-extension-starter:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "chrome-extension-starter:build:development"
+        },
+        "production": {
+          "buildTarget": "chrome-extension-starter:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/chrome-extension-starter/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
